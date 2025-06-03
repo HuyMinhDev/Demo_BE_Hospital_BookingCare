@@ -312,10 +312,16 @@ let bulkCreateSchedule = (data) => {
         }
 
         // Xóa toàn bộ giờ cũ theo doctorId + date
+        // await db.Schedule.destroy({
+        //   where: {
+        //     doctorId: data.doctorId,
+        //     date: data.formateDate,
+        //   },
+        // });
         await db.Schedule.destroy({
           where: {
             doctorId: data.doctorId,
-            date: data.formateDate,
+            date: data.formateDate.toString(), // ép về string để tránh lỗi
           },
         });
 
@@ -328,6 +334,7 @@ let bulkCreateSchedule = (data) => {
         });
       }
     } catch (e) {
+      console.log("Tôi là lỗi khi đặt lịch: ", e);
       reject(e);
     }
   });

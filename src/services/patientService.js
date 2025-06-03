@@ -124,6 +124,7 @@ let postBookAppointment = (data) => {
         errMessage: "Đặt lịch thành công!",
       });
     } catch (e) {
+      console.log("Tôi đang bị lỗi khi đặt lịch: ", e);
       reject(e);
     }
   });
@@ -133,6 +134,7 @@ let postVerifyBookAppointment = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       if (!data.token || !data.doctorId) {
+        console.log("Tôi bị lỗi gửi email 2: ", e);
         resolve({
           errCode: 1,
           errMessage: "Missing required parameter!",
